@@ -8,6 +8,6 @@ import {Product} from "./common/product";
 })
 export class AppComponent {
 
-  products: Product
+  // products: Product
 
 }

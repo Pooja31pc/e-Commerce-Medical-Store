@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~font-awesome/css/font-awesome.css";
+@import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 @font-face{
   font-family: 'Roboto Mono';
@@ -11,6 +11,10 @@ h1{
   font-family: 'Roboto Mono';
 }
 
-/*body {*/
-/*  padding-top: 56px;*/
-/*}*/
+body {
+  padding-top: 56px;
+}
+
+.pointer {
+  cursor: pointer;
+}
