@@ -14,18 +14,25 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { SearchComponent } from './components/search/search.component';
 import {ProductService} from "./services/product.service";
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductBrandComponent } from './components/product-brand/product-brand.component';
+import { UserLoginComponent } from './components/user-login/user-login.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 
 
 
 const routes: Routes = [
   {path: 'ordered-details', component: OrderedDetailsComponent},
+  {path: 'login', component: UserLoginComponent},
+  {path: 'register', component: UserRegisterComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
   {path: 'products', component: ProductListComponent},
   {path: 'search/:keyword',component: ProductListComponent},
-  {path: 'category/:id', component: ProductListComponent},
+  {path: 'category/:category_id', component: ProductListComponent},
+  {path: 'brand/:brand_id', component: ProductListComponent},
   {path: '', redirectTo: '/products', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
@@ -41,12 +48,16 @@ const routes: Routes = [
     ProductCategoryComponent,
     ProductDetailsComponent,
     ProductListComponent,
-    SearchComponent
+    SearchComponent,
+    ProductBrandComponent,
+    UserLoginComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    FormsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [

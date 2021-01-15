@@ -4,13 +4,13 @@ import com.meddeli.onlinemedicalstore.model.AddProductAdmin;
 import com.meddeli.onlinemedicalstore.model.Brand;
 import com.meddeli.onlinemedicalstore.model.Category;
 import com.meddeli.onlinemedicalstore.model.Product;
+import com.meddeli.onlinemedicalstore.repository.AdminRepository;
 import com.meddeli.onlinemedicalstore.repository.BrandRepository;
 import com.meddeli.onlinemedicalstore.repository.CategoryRepository;
 import com.meddeli.onlinemedicalstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +52,30 @@ public class AdminController {
         return product;
     }
 
+    @DeleteMapping("deletebrand")
+    public String deleteBrand(@RequestParam("id") long brandId) {
+        brandRepo.deleteById(brandId);
+
+        return "Success";
+    }
+
+    @DeleteMapping("deletecategory")
+    public String deleteCategory(@RequestParam("id") long categoryId) {
+        brandRepo.deleteById(categoryId);
+
+        return "Success";
+    }
+
+    @PostMapping("addbrand")
+    public String addBrand(@RequestBody Brand brand) {
+            return "Success";
+    }
+
+    @PostMapping("addcategory")
+    public String addCategory(@RequestBody Category category) {
+        return "Success";
+    }
+
 
     @PostMapping("addproduct")
     public String postProduct(@RequestBody AddProductAdmin addProductAdmin){
@@ -82,6 +106,31 @@ public class AdminController {
 
     }
 
+    //dlt product by product Id
+    @DeleteMapping("deleteprodut")
+    public String deleteProduct(@RequestParam("id") long productid) {
+        productRepo.deleteById(productid);
+        return "success.";
+    }
+
+    //dlt all products of a particular brand id
+    @DeleteMapping("deleteallproductbybrand")
+    public String deleteAllProductByBrand(@RequestParam("id") long brandid)
+    {
+        productRepo.deleteByBrandId(brandid);
+        return "success.";
+    }
+
+    //dlt all products of a particular category id
+    @DeleteMapping("deleteallproductbycategory")
+    public String deleteAllProductByCategory(@RequestParam("id") long categoryid)
+    {
+        productRepo.deleteByCategoryId(categoryid);
+        return "success.";
+    }
+
+    @Autowired
+    private AdminRepository adminRepo;
 
 
 }

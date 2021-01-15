@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
 
   products: Product[];
   currentCategoryId: number;
+  currentBrandId: number;
   searchMode: boolean;
 
   constructor(private _productService: ProductService,
@@ -40,19 +41,29 @@ export class ProductListComponent implements OnInit {
 
   handleListProducts(){
 
-    const hasCategoryId: boolean = this._activatedRoute.snapshot.paramMap.has('id');
+     const hasCategoryId: boolean = this._activatedRoute.snapshot.paramMap.has('category_id');
 
-    if(hasCategoryId){
-      this.currentCategoryId = +this._activatedRoute.snapshot.paramMap.get('id');
-    }else {
-      this.currentCategoryId = 1;
+     const hasBrandId: boolean = this._activatedRoute.snapshot.paramMap.has('brand_id');
+
+    if(hasCategoryId) {
+      this.currentCategoryId = +this._activatedRoute.snapshot.paramMap.get('category_id');
+      this._productService.getProducts(this.currentCategoryId).subscribe(
+        data => this.products = data
+      )
     }
-
-
-    this._productService.getProducts(this.currentCategoryId).subscribe(
-      data => this.products = data
-    )
-
+    else
+     if(hasBrandId){
+      this.currentBrandId = +this._activatedRoute.snapshot.paramMap.get('brand_id');
+       this._productService.getProductsbyBranch(this.currentBrandId).subscribe(
+         data => this.products = data
+       )
+    }
+    else {
+      this.currentCategoryId = 1;
+       this._productService.getProducts(this.currentCategoryId).subscribe(
+         data => this.products = data
+       )
+    }
   }
 
   handleSearchProducts(){

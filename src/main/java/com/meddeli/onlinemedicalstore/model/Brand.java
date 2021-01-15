@@ -18,18 +18,22 @@ public class Brand {
     private Set<Product> product;
 
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getBrandName() {
+
         return brandName;
     }
 
     public void setBrandName(String brandName) {
+
         this.brandName = brandName;
     }
 
@@ -37,6 +41,7 @@ public class Brand {
     }
 
     public Brand(String brandName) {
+
         this.brandName = brandName;
     }
 

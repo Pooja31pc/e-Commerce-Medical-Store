@@ -10,9 +10,11 @@ import com.meddeli.onlinemedicalstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -54,6 +56,29 @@ public class UserController {
         return category;
     }
 
+    @GetMapping("brandid")
+    private Optional<Brand> getBrandById(@RequestParam("id") long brandid)
+    {
+        Optional<Brand> brandById = brandRepo.findById(brandid);
+
+        return brandById;
+    }
+
+    @GetMapping("brandproducts")
+    private List<Product> getBrandProduct(@RequestParam("id") long brandid)
+    {
+        List<Product> brandProduct = productRepo.findByBrandProduct(brandid);
+
+        return brandProduct;
+    }
+
+    @GetMapping("categoryproducts")
+    private List<Product> getCategoryProduct(@RequestParam("id") long categoryid)
+    {
+        List<Product> categoryProduct = productRepo.findByCategoryProduct(categoryid);
+
+        return categoryProduct;
+    }
 
 
 }
