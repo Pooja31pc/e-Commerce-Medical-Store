@@ -3,15 +3,13 @@ package com.meddeli.onlinemedicalstore.controller;
 import com.meddeli.onlinemedicalstore.model.Brand;
 import com.meddeli.onlinemedicalstore.model.Category;
 import com.meddeli.onlinemedicalstore.model.Product;
+import com.meddeli.onlinemedicalstore.model.User;
 import com.meddeli.onlinemedicalstore.repository.BrandRepository;
 import com.meddeli.onlinemedicalstore.repository.CategoryRepository;
 import com.meddeli.onlinemedicalstore.repository.ProductRepository;
 import com.meddeli.onlinemedicalstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +77,23 @@ public class UserController {
 
         return categoryProduct;
     }
+
+    @PostMapping("registeruser")
+    private User registerUser(@RequestBody User user)
+    {
+//        to check if user already exists or not.
+//        String tempEmail = user.getEmail();
+//        if(tempEmail!=null && !"".equals(tempEmail)) {
+//
+//        }
+
+        User userDetailsSave = null;
+        userDetailsSave = userRepo.save(user);
+
+        return userDetailsSave;
+    }
+
+
 
 
 }

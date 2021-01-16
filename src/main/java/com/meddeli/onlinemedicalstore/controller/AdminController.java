@@ -1,9 +1,6 @@
 package com.meddeli.onlinemedicalstore.controller;
 
-import com.meddeli.onlinemedicalstore.model.AddProductAdmin;
-import com.meddeli.onlinemedicalstore.model.Brand;
-import com.meddeli.onlinemedicalstore.model.Category;
-import com.meddeli.onlinemedicalstore.model.Product;
+import com.meddeli.onlinemedicalstore.model.*;
 import com.meddeli.onlinemedicalstore.repository.AdminRepository;
 import com.meddeli.onlinemedicalstore.repository.BrandRepository;
 import com.meddeli.onlinemedicalstore.repository.CategoryRepository;
@@ -131,6 +128,28 @@ public class AdminController {
 
     @Autowired
     private AdminRepository adminRepo;
+
+    @PostMapping("registeradmin")
+    private Admin registerAdmin(@RequestBody Admin admin)
+    {
+        Admin adminDetailsSave = null;
+        adminDetailsSave = adminRepo.save(admin);
+
+        return adminDetailsSave;
+    }
+
+//    @PostMapping("loginadmin")
+//    private Admin loginAdmin(@RequestBody Admin admin)
+//    {
+//        String tempEmailId = admin.getEmailid();
+//        String tempPassword = admin.getPassword();
+//        Admin admintemp = null;
+//        if(tempEmailId!=null && tempPassword!=null){
+//            admintemp =  adminRepo.fetchUserByEmailAndPassword(tempEmailId,tempPassword);
+//        }
+//
+//       return admintemp;
+   // }
 
 
 }
