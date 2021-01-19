@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {CartItem} from "../common/cart-item";
-import {Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
+import {Product} from "../common/product";
+import {ProductService} from "./product.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class CartService {
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
 
-  constructor() { }
+  constructor(private  productService: ProductService) { }
 
   addToCart(theCartItem: CartItem){
     //check whether the product/item is already in the cart
@@ -28,9 +30,27 @@ export class CartService {
 
     }
 
+    // increase_quantity(temp_package){
+    //   if(temp_package.limit == temp_package.quantity){
+    //     return alert("Can't add more")
+      // }else{
+    //     temp_package.quantity++
+    //     this.Price += temp_package.price
+    //   }
+    // }
+
     if(alreadyExistsInCart) {
       //increment the quantity
-      existingCartItem.quantity++;
+      let temp: Product = null
+      this.productService.get(Number(existingCartItem.id)).subscribe(
+        data => {temp = data
+
+          if(existingCartItem.quantity>=temp.unitsInStock){
+            return alert("Dont add more")
+          }
+          existingCartItem.quantity++;
+        }
+      )
     }else{
       //add to the cart item array
       this.cartItems.push(theCartItem);

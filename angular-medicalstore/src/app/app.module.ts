@@ -19,11 +19,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductBrandComponent } from './components/product-brand/product-brand.component';
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
 
 
 
 const routes: Routes = [
   {path: 'ordered-details', component: OrderedDetailsComponent},
+  {path: 'adminproduct', component: AdminProductListComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'register', component: UserRegisterComponent},
   {path: 'checkout', component: CheckoutComponent},
@@ -51,7 +53,8 @@ const routes: Routes = [
     SearchComponent,
     ProductBrandComponent,
     UserLoginComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    AdminProductListComponent
   ],
   imports: [
     BrowserModule,

@@ -6,8 +6,10 @@ import com.meddeli.onlinemedicalstore.repository.BrandRepository;
 import com.meddeli.onlinemedicalstore.repository.CategoryRepository;
 import com.meddeli.onlinemedicalstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,9 +42,9 @@ public class AdminController {
 
     @Autowired
     private ProductRepository productRepo;
-
+   // @CrossOrigin(originPatterns = "http://localhost:4200")
     @GetMapping("product")
-    public List<Product> getProduct()
+    public List<Product> getProduct( HttpServletRequest request)
     {
         List<Product> product =  productRepo.findAll();
 

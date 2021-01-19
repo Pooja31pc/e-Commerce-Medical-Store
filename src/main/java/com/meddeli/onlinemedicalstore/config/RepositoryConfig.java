@@ -31,6 +31,9 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
                 .addMapping("/**")
                 .allowedOrigins("http://localhost:4200");
 
+//        config.getCorsRegistry()
+//                .addMapping("/admin**")
+//                .allowedOrigins("http://localhost:4200");
     }
 
 }

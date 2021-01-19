@@ -15,9 +15,20 @@ export class ProductService {
   private baseUrl = "http://localhost:8484/products";
   private categoryUrl = "http://localhost:8484/product-category";
   private brandUrl = "http://localhost:8484/product-brand";
+  private adminUrl = "http://localhost:8484/admin/product";
 
 
   constructor(private httpClient: HttpClient) { }
+
+  getAdminList(): Observable<Product[]>{
+    return this.httpClient.get<Product[]>(`${this.adminUrl}`);
+  }
+
+  // private getAdminList(): Observable<Product[]> {
+  //   return this.httpClient.get<GetResponseProducts>(this.adminUrl).pipe(
+  //     map(response => response._embedded.products)
+  //   );
+  // }
 
   getProducts(theCategoryId: number): Observable<Product[]>{
 
