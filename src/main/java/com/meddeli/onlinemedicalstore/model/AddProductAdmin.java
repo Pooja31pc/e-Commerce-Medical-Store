@@ -7,16 +7,88 @@ public class AddProductAdmin {
 
 
     private String sku;
-    private String productName;
+    private String name;
     private String description;
     private BigDecimal unitPrice;
     private String imageUrl;
     private boolean active;
     private int unitsInStock;
-    private Date createdOn;
-    private Date updatedOn;
-    private Long categoryId;
-    private Long brandId;
+    private Long category_id;
+    private Long brand_id;
+
+//    public String getSku() {
+//        return sku;
+//    }
+//
+//    public void setSku(String sku) {
+//        this.sku = sku;
+//    }
+//
+//    public String getProductName() {
+//        return name;
+//    }
+//
+//    public void setProductName(String productName) {
+//        this.name = productName;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public void setDescription(String description) {
+//        this.description = description;
+//    }
+//
+//    public BigDecimal getUnitPrice() {
+//        return unitPrice;
+//    }
+//
+//    public void setUnitPrice(BigDecimal unitPrice) {
+//        this.unitPrice = unitPrice;
+//    }
+//
+//    public String getImageUrl() {
+//        return imageUrl;
+//    }
+//
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
+//
+//    public boolean isActive() {
+//        return active;
+//    }
+//
+//    public void setActive(boolean active) {
+//        this.active = active;
+//    }
+//
+//    public int getUnitsInStock() {
+//        return unitsInStock;
+//    }
+//
+//    public void setUnitsInStock(int unitsInStock) {
+//        this.unitsInStock = unitsInStock;
+//    }
+//
+//
+//    public Long getCategoryId() {
+//        return category_id;
+//    }
+//
+//    public void setCategoryId(Long category_id) {
+//        this.category_id = category_id;
+//    }
+//
+//    public Long getBrandId() {
+//        return brand_id;
+//    }
+//
+//    public void setBrandId(Long brand_id) {
+//        this.brand_id = brand_id;
+//    }
+
 
     public String getSku() {
         return sku;
@@ -26,12 +98,12 @@ public class AddProductAdmin {
         this.sku = sku;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -74,53 +146,35 @@ public class AddProductAdmin {
         this.unitsInStock = unitsInStock;
     }
 
-    public Date getCreatedOn() {
-        return createdOn;
+    public Long getCategory_id() {
+        return category_id;
     }
 
-    public void setCreatedOn(Date createdOn) {
-        this.createdOn = createdOn;
+    public void setCategory_id(Long category_id) {
+        this.category_id = category_id;
     }
 
-    public Date getUpdatedOn() {
-        return updatedOn;
+    public Long getBrand_id() {
+        return brand_id;
     }
 
-    public void setUpdatedOn(Date updatedOn) {
-        this.updatedOn = updatedOn;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public Long getBrandId() {
-        return brandId;
-    }
-
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+    public void setBrand_id(Long brand_id) {
+        this.brand_id = brand_id;
     }
 
     public AddProductAdmin() {
     }
 
-    public AddProductAdmin(String sku, String productName, String description, BigDecimal unitPrice, String imageUrl, boolean active, int unitsInStock, Date createdOn, Date updatedOn, Long categoryId, Long brandId) {
+    public AddProductAdmin(String sku, String productName, String description, BigDecimal unitPrice, String imageUrl, boolean active, int unitsInStock, Long category_id, Long brand_id) {
         this.sku = sku;
-        this.productName = productName;
+        this.name = productName;
         this.description = description;
         this.unitPrice = unitPrice;
         this.imageUrl = imageUrl;
         this.active = active;
         this.unitsInStock = unitsInStock;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
-        this.categoryId = categoryId;
-        this.brandId = brandId;
+        this.category_id = category_id;
+        this.brand_id = brand_id;
     }
 
 }

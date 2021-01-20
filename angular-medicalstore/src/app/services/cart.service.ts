@@ -17,28 +17,12 @@ export class CartService {
 
   addToCart(theCartItem: CartItem){
     //check whether the product/item is already in the cart
-
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined;
-
     if(this.cartItems.length > 0) {
-
       existingCartItem = this.cartItems.find(tempCartItem => tempCartItem.id === theCartItem.id);
-
-
       alreadyExistsInCart = (existingCartItem != undefined)
-
     }
-
-    // increase_quantity(temp_package){
-    //   if(temp_package.limit == temp_package.quantity){
-    //     return alert("Can't add more")
-      // }else{
-    //     temp_package.quantity++
-    //     this.Price += temp_package.price
-    //   }
-    // }
-
     if(alreadyExistsInCart) {
       //increment the quantity
       let temp: Product = null
@@ -55,9 +39,7 @@ export class CartService {
       //add to the cart item array
       this.cartItems.push(theCartItem);
     }
-
     this.calculateTotalPrice();
-
   }
 
   calculateTotalPrice(){
@@ -102,12 +84,6 @@ export class CartService {
   }
 
   emptyCart() {
-    // for(let currentCartItem of this.cartItems){
-
-    //   this.remove(currentCartItem);
-
-    // }
-
     for(var i=0;i<CartItem.length;i++){
       this.cartItems.splice(CartItem[i]);
     }

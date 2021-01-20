@@ -1,6 +1,9 @@
+import {ProductCategory} from "./product-category";
+import {ProductBrand} from "./product-brand";
+
 export class Product {
 
-  id: string;
+  id: number;
   sku: string;
   name: string;
   description: string;
@@ -10,5 +13,7 @@ export class Product {
   unitsInStock: number;
   createdOn: Date;
   updatedOn: Date;
+  category_id: ProductCategory;
+  brand_id: ProductBrand;
 
 }

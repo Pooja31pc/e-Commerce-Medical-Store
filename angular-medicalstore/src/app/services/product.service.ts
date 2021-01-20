@@ -5,6 +5,7 @@ import {map} from "rxjs/operators";
 import {Product} from "../common/product";
 import {ProductCategory} from "../common/product-category";
 import {ProductBrand} from "../common/product-brand";
+import {CartItem} from "../common/cart-item";
 
 @Injectable({
   providedIn: 'root'
@@ -16,20 +17,40 @@ export class ProductService {
   private categoryUrl = "http://localhost:8484/product-category";
   private brandUrl = "http://localhost:8484/product-brand";
   private adminUrl = "http://localhost:8484/admin/product";
+  private adminCreateProductUrl = "http://localhost:8484/admin/addproduct";
+  private productByIdUrl = "http://localhost:8484/admin/productbyid";
+  private deleteProductUrl = "http://localhost:8484/admin/deleteproduct";
+  private updateProductUrl = "http://localhost:8484/admin/updateproduct/{id}";
 
 
   constructor(private httpClient: HttpClient) { }
-
+//Admin APIs:
   getAdminList(): Observable<Product[]>{
     return this.httpClient.get<Product[]>(`${this.adminUrl}`);
   }
 
-  // private getAdminList(): Observable<Product[]> {
-  //   return this.httpClient.get<GetResponseProducts>(this.adminUrl).pipe(
-  //     map(response => response._embedded.products)
-  //   );
-  // }
+  //
+  createAdminProduct(product: Product): Observable<Object>{
+    // let alreadyExistsCategory: boolean = false;
+    // let existingCategory: ProductCategory = undefined;
+    // if()
+     return this.httpClient.post(`${this.adminCreateProductUrl}`, product);
+  }
 
+  getProductById(id: number): Observable<Product>{
+    return this.httpClient.get<Product>(`${this.productByIdUrl}/${id}`);
+  }
+
+  updateProduct(id: number, prodcut: Product): Observable<Object>{
+    return this.httpClient.put(`${this.updateProductUrl}/${id}`, prodcut);
+  }
+
+
+  deleteProductById(id: number): Observable<Object>{
+    return this.httpClient.delete<Product>(`${this.deleteProductUrl}/${id}`);
+  }
+
+  //User APIs:
   getProducts(theCategoryId: number): Observable<Product[]>{
 
     const searchUrl = `${this.baseUrl}/search/categoryid?id=${theCategoryId}`;

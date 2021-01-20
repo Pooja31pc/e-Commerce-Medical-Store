@@ -20,12 +20,23 @@ import { ProductBrandComponent } from './components/product-brand/product-brand.
 import { UserLoginComponent } from './components/user-login/user-login.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { AdminProductListComponent } from './components/admin-product-list/admin-product-list.component';
+import { AdminProductCreateComponent } from './components/admin-product-create/admin-product-create.component';
+import { AdminProductDetailsComponent } from './components/admin-product-details/admin-product-details.component';
+import { AdminBrandListComponent } from './components/admin-brand-list/admin-brand-list.component';
+import { AdminCategoryListComponent } from './components/admin-category-list/admin-category-list.component';
+import { AdminDeleteProductComponent } from './components/admin-delete-product/admin-delete-product.component';
+import { AdminUpdateProductComponent } from './components/admin-update-product/admin-update-product.component';
 
 
 
 const routes: Routes = [
   {path: 'ordered-details', component: OrderedDetailsComponent},
+  {path: 'admincreate', component: AdminProductCreateComponent},
   {path: 'adminproduct', component: AdminProductListComponent},
+  {path: 'adminproductdetails/:id', component: AdminProductDetailsComponent},
+  {path: 'adminbrand', component: AdminBrandListComponent},
+  {path: 'admincategory', component: AdminCategoryListComponent},
+  {path: 'updateproduct/:id', component: AdminUpdateProductComponent},
   {path: 'login', component: UserLoginComponent},
   {path: 'register', component: UserRegisterComponent},
   {path: 'checkout', component: CheckoutComponent},
@@ -54,7 +65,13 @@ const routes: Routes = [
     ProductBrandComponent,
     UserLoginComponent,
     UserRegisterComponent,
-    AdminProductListComponent
+    AdminProductListComponent,
+    AdminProductCreateComponent,
+    AdminProductDetailsComponent,
+    AdminBrandListComponent,
+    AdminCategoryListComponent,
+    AdminDeleteProductComponent,
+    AdminUpdateProductComponent
   ],
   imports: [
     BrowserModule,

@@ -44,98 +44,122 @@ public class Product {
     private Brand brand;
 
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getSku() {
+
         return sku;
     }
 
     public void setSku(String sku) {
+
         this.sku = sku;
     }
 
     public String getName() {
+
         return name;
     }
 
     public void setName(String name) {
+
         this.name = name;
     }
 
     public String getDescription() {
+
         return description;
     }
 
     public void setDescription(String description) {
+
         this.description = description;
     }
 
     public BigDecimal getUnitPrice() {
+
         return unitPrice;
     }
 
     public void setUnitPrice(BigDecimal unitPrice) {
+
         this.unitPrice = unitPrice;
     }
 
     public String getImageUrl() {
+
         return imageUrl;
     }
 
     public void setImageUrl(String imageUrl) {
+
         this.imageUrl = imageUrl;
     }
 
     public boolean isActive() {
+
         return active;
     }
 
     public void setActive(boolean active) {
+
         this.active = active;
     }
 
     public int getUnitsInStock() {
+
         return unitsInStock;
     }
 
     public void setUnitsInStock(int unitsInStock) {
+
         this.unitsInStock = unitsInStock;
     }
 
     public Date getCreatedOn() {
+
         return createdOn;
     }
 
     public void setCreatedOn(Date createdOn) {
+
         this.createdOn = createdOn;
     }
 
     public Date getUpdatedOn() {
+
         return updatedOn;
     }
 
     public void setUpdatedOn(Date updatedOn) {
+
         this.updatedOn = updatedOn;
     }
 
     public Category getCategory() {
+
         return category;
     }
 
     public void setCategory(Category category) {
+
         this.category = category;
     }
 
     public Brand getBrand() {
+
         return brand;
     }
 
     public void setBrand(Brand brand) {
+
         this.brand = brand;
     }
 
@@ -154,7 +178,7 @@ public class Product {
         this.brand = brand;
     }
 
-    public Product(String sku, String name, String description, BigDecimal unitPrice, String imageUrl, boolean active, int unitsInStock, Date createdOn, Date updatedOn, Category category, Brand brand) {
+    public Product(String sku, String name, String description, BigDecimal unitPrice, String imageUrl, boolean active, int unitsInStock, Category category, Brand brand) {
         this.sku = sku;
         this.name = name;
         this.description = description;
@@ -162,10 +186,10 @@ public class Product {
         this.imageUrl = imageUrl;
         this.active = active;
         this.unitsInStock = unitsInStock;
-        this.createdOn = createdOn;
-        this.updatedOn = updatedOn;
         this.category = category;
         this.brand = brand;
+        this.createdOn = new java.util.Date();
+        this.updatedOn = new java.util.Date();
     }
 
     public Product() {
