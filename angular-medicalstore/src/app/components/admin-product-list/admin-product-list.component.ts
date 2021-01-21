@@ -33,7 +33,7 @@ export class AdminProductListComponent implements OnInit {
  deleteProduct(id: number){
     this.productService.deleteProductById(id).subscribe(data => {
       console.log(data);
-      //this.getAdminProducts();
+      this.getAdminProducts();
     })
  }
 

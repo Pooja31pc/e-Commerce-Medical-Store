@@ -42,10 +42,19 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("delete from Product pe where pe.category.id=:categoryId")
     void deleteByCategoryId(@Param("categoryId")long categoryid);
 
+    //delete product by product id
+    @Transactional
+    @Modifying
+    @Query("delete from Product pe where pe.id=:productId")
+    void deleteByProductId(@Param("productId")long productid);
+
     @Query("select pe from Product pe where pe.brand.id=:brandId")
     List<Product> findByBrandProduct(@Param("brandId")long brandid);
 
     @Query("select pe from Product pe where pe.category.id=:categoryId")
     List<Product> findByCategoryProduct(@Param("categoryId")long categoryId);
+
+    @Query("select pe from Product pe where pe.id=:productId")
+    Product findByProductId(@Param("productId")long productId);
 
 }

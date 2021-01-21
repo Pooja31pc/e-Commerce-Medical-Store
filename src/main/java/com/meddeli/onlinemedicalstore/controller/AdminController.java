@@ -46,7 +46,7 @@ public class AdminController {
     private ProductRepository productRepo;
    // @CrossOrigin(originPatterns = "http://localhost:4200")
     @GetMapping("product")
-    public List<Product> getProduct( HttpServletRequest request)
+    public List<Product> getProduct()
     {
         List<Product> product =  productRepo.findAll();
 
@@ -77,23 +77,47 @@ public class AdminController {
         return "Success";
     }
 
+    @PutMapping("updateproduct")
+    public Product updateProduct(@RequestParam("id") long productId, @RequestBody AddProductAdmin addProductAdmin) {
+//        Optional<Category> category = categoryRepo.findById(addProductAdmin.getCategory_id());
+//        Optional<Brand> brand = brandRepo.findById(addProductAdmin.getBrand_id());
+       Product product = productRepo.findByProductId(productId);
+//        Category categoryProduct = category.get();
+//        Brand brandProduct = brand.get();
+//        Product product = new Product(addProductAdmin.setSku(addProductAdmin.getSku()), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
+        product.setSku(addProductAdmin.getSku());
+        product.setName(addProductAdmin.getName());
+        product.setDescription(addProductAdmin.getDescription());
+        product.setUnitPrice(addProductAdmin.getUnitPrice());
+        product.setImageUrl(addProductAdmin.getImageUrl());
+        product.setActive(addProductAdmin.isActive());
+        product.setUnitsInStock(addProductAdmin.getUnitsInStock());
+        Product productRecord = null;
+
+            productRecord = productRepo.save(product);
+        //System.out.println(productRecord);
+        return productRecord;
+    }
 
     @PostMapping("addproduct")
-    public String postProduct(@RequestBody AddProductAdmin addProductAdmin){
+    public Product postProduct(@RequestBody AddProductAdmin addProductAdmin){
         Optional<Category> category = categoryRepo.findById(addProductAdmin.getCategory_id());
         Optional<Brand> brand = brandRepo.findById(addProductAdmin.getBrand_id());
 
-        if (category.isPresent()&&brand.isPresent()) {
-                Category categoryProduct = category.get();
-                Brand brandProduct = brand.get();
-                Product product = new Product(addProductAdmin.getSku(), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
-                productRepo.save(product);
-                return "Success";
-
-        }
-        Product product =new Product();
-        productRepo.save(product);
-        return "Success";
+        Category categoryProduct = category.get();
+        Brand brandProduct = brand.get();
+        Product product = new Product(addProductAdmin.getSku(), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
+        Product productRecord = null;
+        if (category.isPresent()&&brand.isPresent())
+//                Category categoryProduct = category.get();
+//                Brand brandProduct = brand.get();
+//                Product product = new Product(addProductAdmin.getSku(), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
+            productRecord = productRepo.save(product);
+        //System.out.println(productRecord);
+                return productRecord;
+//        Product product =new Product();
+//        productRepo.save(product);
+//        return "Success";
 
     }
 //    @GetMapping("productbyid")
@@ -113,11 +137,12 @@ public class AdminController {
 
     //dlt product by product Id
     @DeleteMapping("deleteproduct")
-    public String deleteProduct(@RequestParam("id") long id) {
-        productRepo.deleteById(id);
-        return "success.";
+    public Optional<Product> deleteProduct(@RequestParam("id") long productid) {
+        Optional<Product> removedStore = productRepo.findById(productid);
+        productRepo.deleteByProductId(productid);
+        return removedStore;
     }
-
+    //{"success":false;};
 
 
     //dlt all products of a particular brand id
@@ -160,24 +185,55 @@ public class AdminController {
 //
 //       return admintemp;
    // }
+//@PutMapping("updateproduct")
+//public Product updateProduct(@RequestParam("id") long id){
+//    Optional<Product> product = productRepo.findById(id);
+//
+//    AddProductAdmin addProductAdmin = null;
 
-    @PutMapping("/updateproduct/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails){
-        Product product = productRepo.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Product not exist with id :" + id));
+//    Optional<Category> category = categoryRepo.findById(addProductAdmin.getCategory_id());
+//    Optional<Brand> brand = brandRepo.findById(addProductAdmin.getBrand_id());
 
-        product.setSku(productDetails.getSku());
-        product.setName(productDetails.getName());
-        product.setDescription(productDetails.getDescription());
-        product.setUnitPrice(productDetails.getUnitPrice());
-        product.setImageUrl(productDetails.getImageUrl());
-        product.setActive(productDetails.isActive());
-        product.setUnitsInStock(productDetails.getUnitsInStock());
-        product.setCategory(productDetails.getCategory());
-        product.setBrand(productDetails.getBrand());
+//    Category categoryProduct = category.get();
+//    Brand brandProduct = brand.get();
+//    Product product = new Product(addProductAdmin.getSku(), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
+//    Product productRecord = null;
+//    if (category.isPresent()&&brand.isPresent())
+//                Category categoryProduct = category.get();
+//                Brand brandProduct = brand.get();
+//                Product product = new Product(addProductAdmin.getSku(), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
+//        productRecord = productRepo.save(product);
+//        product.setSku(addProductAdmin.getSku());
+//        product.setName(addProductAdmin.getName());
+//        product.setDescription(addProductAdmin.getDescription());
+//        product.setUnitPrice(addProductAdmin.getUnitPrice());
+//        product.setImageUrl(addProductAdmin.getImageUrl());
+//        product.setActive(addProductAdmin.isActive());
+//        product.setUnitsInStock(addProductAdmin.getUnitsInStock());
+////        product.setCategory(addProductAdmin.categoryProduct);
+////            product.setBrand(productDetails.getBrand());
+//
+//    Product updatedProduct = productRepo.save(product);
+//    return updatedProduct;
+//}
 
-        Product updatedProduct = productRepo.save(product);
-        return ResponseEntity.ok(updatedProduct);
-    }
+//    @PutMapping("/updateproduct/{id}")
+//    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails){
+//        Product product = productRepo.findById(id)
+//                .orElseThrow(() -> new ResourceNotFoundException("Product not exist with id :" + id));
+//
+//        product.setSku(productDetails.getSku());
+//        product.setName(productDetails.getName());
+//        product.setDescription(productDetails.getDescription());
+//        product.setUnitPrice(productDetails.getUnitPrice());
+//        product.setImageUrl(productDetails.getImageUrl());
+//        product.setActive(productDetails.isActive());
+//        product.setUnitsInStock(productDetails.getUnitsInStock());
+//        product.setCategory(productDetails.getCategory());
+//        product.setBrand(productDetails.getBrand());
+//
+//        Product updatedProduct = productRepo.save(product);
+//        return ResponseEntity.ok(updatedProduct);
+//    }
 
 }

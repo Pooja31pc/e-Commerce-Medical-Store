@@ -47,7 +47,7 @@ export class ProductService {
 
 
   deleteProductById(id: number): Observable<Object>{
-    return this.httpClient.delete<Product>(`${this.deleteProductUrl}/${id}`);
+    return this.httpClient.delete(`${this.deleteProductUrl}?id=${id}`);
   }
 
   //User APIs:
