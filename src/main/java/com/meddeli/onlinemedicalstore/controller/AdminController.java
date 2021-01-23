@@ -53,50 +53,36 @@ public class AdminController {
         return product;
     }
 
-    @DeleteMapping("deletebrand")
-    public String deleteBrand(@RequestParam("id") long brandId) {
-        brandRepo.deleteById(brandId);
+//    public Optional<Product> deleteProduct(@RequestParam("id") long productid) {
+//        Optional<Product> removedStore = productRepo.findById(productid);
+//        productRepo.deleteByProductId(productid);
+//        return removedStore;
+//    }
 
-        return "Success";
+    @DeleteMapping("deletebrand")
+    public Optional<Brand> deleteBrand(@RequestParam("id") long brandid) {
+       Optional<Brand> brandRecord = brandRepo.findById(brandid);
+        brandRepo.deleteByBrandId(brandid);
+        return brandRecord;
     }
 
     @DeleteMapping("deletecategory")
-    public String deleteCategory(@RequestParam("id") long categoryId) {
-        brandRepo.deleteById(categoryId);
-
-        return "Success";
+    public Optional<Category> deleteCategory(@RequestParam("id") long categoryid) {
+        Optional<Category> categoryRecord = categoryRepo.findById(categoryid);
+        categoryRepo.deleteByCategoryId(categoryid);
+        return categoryRecord;
     }
 
     @PostMapping("addbrand")
-    public String addBrand(@RequestBody Brand brand) {
-            return "Success";
+    public Brand addBrand(@RequestBody Brand brand) {
+            Brand brandRecord = brandRepo.save(brand);
+        return brandRecord;
     }
 
     @PostMapping("addcategory")
-    public String addCategory(@RequestBody Category category) {
-        return "Success";
-    }
-
-    @PutMapping("updateproduct")
-    public Product updateProduct(@RequestParam("id") long productId, @RequestBody AddProductAdmin addProductAdmin) {
-//        Optional<Category> category = categoryRepo.findById(addProductAdmin.getCategory_id());
-//        Optional<Brand> brand = brandRepo.findById(addProductAdmin.getBrand_id());
-       Product product = productRepo.findByProductId(productId);
-//        Category categoryProduct = category.get();
-//        Brand brandProduct = brand.get();
-//        Product product = new Product(addProductAdmin.setSku(addProductAdmin.getSku()), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
-        product.setSku(addProductAdmin.getSku());
-        product.setName(addProductAdmin.getName());
-        product.setDescription(addProductAdmin.getDescription());
-        product.setUnitPrice(addProductAdmin.getUnitPrice());
-        product.setImageUrl(addProductAdmin.getImageUrl());
-        product.setActive(addProductAdmin.isActive());
-        product.setUnitsInStock(addProductAdmin.getUnitsInStock());
-        Product productRecord = null;
-
-            productRecord = productRepo.save(product);
-        //System.out.println(productRecord);
-        return productRecord;
+    public Category addCategory(@RequestBody Category category) {
+        Category categoryRecord = categoryRepo.save(category);
+        return categoryRecord;
     }
 
     @PostMapping("addproduct")
@@ -145,7 +131,7 @@ public class AdminController {
     //{"success":false;};
 
 
-    //dlt all products of a particular brand id
+    //dlt all products of a particular brand id --- postman baki hai
     @DeleteMapping("deleteallproductbybrand")
     public String deleteAllProductByBrand(@RequestParam("id") long brandid)
     {
@@ -153,7 +139,7 @@ public class AdminController {
         return "success.";
     }
 
-    //dlt all products of a particular category id
+    //dlt all products of a particular category id --- postman baki hai
     @DeleteMapping("deleteallproductbycategory")
     public String deleteAllProductByCategory(@RequestParam("id") long categoryid)
     {
@@ -185,6 +171,8 @@ public class AdminController {
 //
 //       return admintemp;
    // }
+
+    //UPDATE SOLUTION 0
 //@PutMapping("updateproduct")
 //public Product updateProduct(@RequestParam("id") long id){
 //    Optional<Product> product = productRepo.findById(id);
@@ -217,6 +205,7 @@ public class AdminController {
 //    return updatedProduct;
 //}
 
+//UPDATE SOLUTION 1
 //    @PutMapping("/updateproduct/{id}")
 //    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails){
 //        Product product = productRepo.findById(id)
@@ -235,5 +224,42 @@ public class AdminController {
 //        Product updatedProduct = productRepo.save(product);
 //        return ResponseEntity.ok(updatedProduct);
 //    }
+
+//UPDATE SOLUTION 2
+//    @PutMapping("/employees/{id}")
+//    public ResponseEntity<Employee> updateEmployee(@PathVariable(value = "id") Long employeeId,
+//                                                   @Valid @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
+//        Employee employee = employeeRepository.findById(employeeId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
+//
+//        employee.setEmailId(employeeDetails.getEmailId());
+//        employee.setLastName(employeeDetails.getLastName());
+//        employee.setFirstName(employeeDetails.getFirstName());
+//        final Employee updatedEmployee = employeeRepository.save(employee);
+//        return ResponseEntity.ok(updatedEmployee);
+//    }
+
+    @PutMapping("updateproduct")
+    public Product updateProduct(@RequestParam("id") long productId, @RequestBody AddProductAdmin addProductAdmin) {
+//        Optional<Category> category = categoryRepo.findById(addProductAdmin.getCategory_id());
+//        Optional<Brand> brand = brandRepo.findById(addProductAdmin.getBrand_id());
+        Product product = productRepo.findByProductId(productId);
+//        Category categoryProduct = category.get();
+//        Brand brandProduct = brand.get();
+//        Product product = new Product(addProductAdmin.setSku(addProductAdmin.getSku()), addProductAdmin.getName(), addProductAdmin.getDescription(), addProductAdmin.getUnitPrice(), addProductAdmin.getImageUrl(), addProductAdmin.isActive(), addProductAdmin.getUnitsInStock(), categoryProduct, brandProduct);
+        product.setSku(addProductAdmin.getSku());
+        product.setName(addProductAdmin.getName());
+        product.setDescription(addProductAdmin.getDescription());
+        product.setUnitPrice(addProductAdmin.getUnitPrice());
+        product.setImageUrl(addProductAdmin.getImageUrl());
+        product.setActive(addProductAdmin.isActive());
+        product.setUnitsInStock(addProductAdmin.getUnitsInStock());
+        Product productRecord = null;
+
+        productRecord = productRepo.save(product);
+        //System.out.println(productRecord);
+        return productRecord;
+    }
+
 
 }
