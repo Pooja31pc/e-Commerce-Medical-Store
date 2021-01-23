@@ -24,4 +24,11 @@ export class AdminBrandListComponent implements OnInit {
     })
   }
 
+  deleteBrand(id: number){
+    this.brandService.deleteBrandById(id).subscribe(data => {
+      console.log(data);
+      this.getAdminBrands();
+    })
+  }
+
 }

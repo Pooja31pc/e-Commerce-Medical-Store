@@ -26,12 +26,16 @@ import { AdminBrandListComponent } from './components/admin-brand-list/admin-bra
 import { AdminCategoryListComponent } from './components/admin-category-list/admin-category-list.component';
 import { AdminDeleteProductComponent } from './components/admin-delete-product/admin-delete-product.component';
 import { AdminUpdateProductComponent } from './components/admin-update-product/admin-update-product.component';
+import { AdminBrandCreateComponent } from './components/admin-brand-create/admin-brand-create.component';
+import { AdminCategoryCreateComponent } from './components/admin-category-create/admin-category-create.component';
 
 
 
 const routes: Routes = [
   {path: 'ordered-details', component: OrderedDetailsComponent},
   {path: 'admincreate', component: AdminProductCreateComponent},
+  {path: 'adminbrandcreate', component: AdminBrandCreateComponent},
+  {path: 'admincategorycreate', component: AdminCategoryCreateComponent},
   {path: 'adminproduct', component: AdminProductListComponent},
   {path: 'adminproductdetails/:id', component: AdminProductDetailsComponent},
   {path: 'adminbrand', component: AdminBrandListComponent},
@@ -71,7 +75,9 @@ const routes: Routes = [
     AdminBrandListComponent,
     AdminCategoryListComponent,
     AdminDeleteProductComponent,
-    AdminUpdateProductComponent
+    AdminUpdateProductComponent,
+    AdminBrandCreateComponent,
+    AdminCategoryCreateComponent
   ],
   imports: [
     BrowserModule,

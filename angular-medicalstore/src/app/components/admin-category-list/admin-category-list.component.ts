@@ -25,4 +25,11 @@ export class AdminCategoryListComponent implements OnInit {
     })
   }
 
+  deleteCategory(id: number){
+    this.categoryService.deleteCategoryById(id).subscribe(data => {
+      console.log(data);
+      this.getAdminCategory();
+    })
+  }
+
 }
