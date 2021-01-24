@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {LoginService} from "../../services/login.service";
 
 @Component({
   selector: 'app-user-login',
@@ -7,12 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoginComponent implements OnInit {
 
-  username: string;
-  password: string;
+  credentials= {
+    username:'',
+    password:''
+  }
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit() {
+    //console.log("form is submitted");
+    if((this.credentials.username!='' && this.credentials.password!='')&& (this.credentials.username!=null && this.credentials.password!=null)){
+      console.log("We have to submit tha form to server");
+      this.loginService.generateToken(this.credentials).subscribe(
+        (response:string)=>{
+          console.log(response);
+          this.loginService.loginUser(response)
+          window.location.href="/products"
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }else{
+      console.log("Fields are empty !!");
+    }
   }
 
 }

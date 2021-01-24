@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from "@angular/router";
 
 import { AppComponent } from './app.component';
@@ -28,6 +28,13 @@ import { AdminDeleteProductComponent } from './components/admin-delete-product/a
 import { AdminUpdateProductComponent } from './components/admin-update-product/admin-update-product.component';
 import { AdminBrandCreateComponent } from './components/admin-brand-create/admin-brand-create.component';
 import { AdminCategoryCreateComponent } from './components/admin-category-create/admin-category-create.component';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule} from "@angular/material/button";
+import { MatToolbarModule} from "@angular/material/toolbar";
+import { MatFormFieldModule} from "@angular/material/form-field";
+import { MatInputModule} from "@angular/material/input";
+import {AuthGuard} from "./services/auth.guard";
+import {AuthInterceptor} from "./services/auth.interceptor";
 
 
 
@@ -46,12 +53,13 @@ const routes: Routes = [
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
-  {path: 'products', component: ProductListComponent},
+  {path: 'products', component: ProductListComponent, canActivate:[AuthGuard]},
   {path: 'search/:keyword',component: ProductListComponent},
   {path: 'category/:category_id', component: ProductListComponent},
   {path: 'brand/:brand_id', component: ProductListComponent},
   {path: '', redirectTo: '/products', pathMatch: 'full'},
-  {path: '**', component: PageNotFoundComponent}
+  {path: '**', component: PageNotFoundComponent},
+
 ];
 
 @NgModule({
@@ -84,10 +92,17 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    MatButtonModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    RouterModule.forRoot(routes),
+    // BrowserAnimationsModule
   ],
   providers: [
-    ProductService
+    ProductService,
+    AuthGuard,
+    [{provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true}]
   ],
   bootstrap: [AppComponent]
 })

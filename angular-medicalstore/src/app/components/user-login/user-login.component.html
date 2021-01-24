@@ -1,13 +1,56 @@
-<form>
-  <div class="input">
-    <label>Username</label>
-    <input type="text" name="username" [(ngModel)]="username">
+<!--<form>-->
+<!--  <div class="input">-->
+<!--    <label>Username</label>-->
+<!--    <input type="text" name="username" [(ngModel)]="username">-->
+<!--  </div>-->
+<!--  <div class="input">-->
+<!--    <label>Password</label>-->
+<!--    <input type="password" name="password" [(ngModel)]="password">-->
+<!--  </div>-->
+<!--  <div class="input">-->
+<!--    <input type="submit" value="Login">-->
+<!--  </div>-->
+<!--</form>-->
+<div class="bootstrap-wrapper">
+  <div class="container mt">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img class="img-fluid" style="width: 100px" src="/assets/images/logo.jpg" alt="">
+        </div>
+        <h3 class="text-center">Login here!!</h3>
+
+        <!--        creating form-->
+
+        <form (ngSubmit)="onSubmit()">
+<!--          <mat-form-field class="full-width" appearance="outline">-->
+          <div>
+            <label class="full-width" appearance="outline">Username</label>
+            <input [(ngModel)]="credentials.username" name="username" required type="text">
+<!--          </mat-form-field>-->
+          </div>
+          <div>
+<!--          <mat-form-field class="full-width" appearance="outline">-->
+            <label class="full-width" appearance="outline">Password</label>
+            <input [(ngModel)]="credentials.password" name="username" required type="password">
+<!--          </mat-form-field>-->
+      </div>
+          <div class="container text-center">
+            <button type="submit"  color="primary">
+              Login
+            </button>
+
+            <button style="margin-left: 10px" type="reset"  color="accent">
+              Reset
+            </button>
+          </div>
+        </form>
+        <br/>
+        <p class="mt">{{ credentials | json }}</p>
+
+      </div>
+    </div>
+
   </div>
-  <div class="input">
-    <label>Password</label>
-    <input type="password" name="password" [(ngModel)]="password">
-  </div>
-  <div class="input">
-    <input type="submit" value="Login">
-  </div>
-</form>
+
+</div>
