@@ -1,6 +1,7 @@
 package com.meddeli.onlinemedicalstore.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
@@ -20,6 +21,9 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
     @Autowired
     private EntityManager entityManager;
 
+    @Value("${url}")
+    private String accessUrl;
+
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 
@@ -29,7 +33,8 @@ public class RepositoryConfig implements RepositoryRestConfigurer {
 
         config.getCorsRegistry()
                 .addMapping("/**")
-                .allowedOrigins("http://localhost:4200");
+                //.allowedOrigins("http://localhost:4200");
+                .allowedOrigins(accessUrl);
 
 //        config.getCorsRegistry()
 //                .addMapping("/admin**")
