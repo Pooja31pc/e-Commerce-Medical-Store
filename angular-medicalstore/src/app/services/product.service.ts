@@ -6,6 +6,9 @@ import {Product} from "../common/product";
 import {ProductCategory} from "../common/product-category";
 import {ProductBrand} from "../common/product-brand";
 import {CartItem} from "../common/cart-item";
+import {environment} from "../../environments/environment";
+//import {AppComponent} from "../app.component";
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +16,27 @@ import {CartItem} from "../common/cart-item";
 
 export class ProductService {
 
-  private baseUrl = "http://localhost:8484/products";
-  private categoryUrl = "http://localhost:8484/product-category";
-  private brandUrl = "http://localhost:8484/product-brand";
-  private adminUrl = "http://localhost:8484/admin/product";
-  private adminCreateProductUrl = "http://localhost:8484/admin/addproduct";
-  private productByIdUrl = "http://localhost:8484/admin/productbyid";
-  private deleteProductUrl = "http://localhost:8484/admin/deleteproduct";
-  private updateProductUrl = "http://localhost:8484/admin/updateproduct/{id}";
+ //private baseUrl = "http://localhost:8484/products";
+  private baseUrl =    environment.apiUrl+'/products';
+  //private categoryUrl = "http://localhost:8484/product-category";
+  private categoryUrl = environment.apiUrl+'/product-category';
+  //private brandUrl = "http://localhost:8484/product-brand";
+  private brandUrl = environment.apiUrl+'/product-brand';
+  //private adminUrl = "http://localhost:8484/admin/product";
+  private adminUrl = environment.apiUrl+'/admin/product';
+  //private adminCreateProductUrl = "http://localhost:8484/admin/addproduct";
+  private adminCreateProductUrl = environment.apiUrl+'/admin/addproduct';
+  //private productByIdUrl = "http://localhost:8484/admin/productbyid";
+  private productByIdUrl = environment.apiUrl+'/admin/productbyid';
+ // private deleteProductUrl = "http://localhost:8484/admin/deleteproduct";
+  private deleteProductUrl = environment.apiUrl+'/admin/deleteproduct';
+  //private updateProductUrl = "http://localhost:8484/admin/updateproduct/{id}";
+  //private updateProductUrl = environment.apiUrl+'/admin/updateproduct/{id}';
+  private updateProductUrl = environment.apiUrl+'/admin/updateproduct';
 
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient
+             ) { } // private appComponent: AppComponent
 //Admin APIs:
   getAdminList(): Observable<Product[]>{
     return this.httpClient.get<Product[]>(`${this.adminUrl}`);
@@ -47,7 +60,7 @@ export class ProductService {
 
 
   deleteProductById(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.deleteProductUrl}?id=${id}`);
+    return this.httpClient.get(`${this.deleteProductUrl}?id=${id}`);
   }
 
   //User APIs:

@@ -58,15 +58,15 @@ public class AdminController {
 //        productRepo.deleteByProductId(productid);
 //        return removedStore;
 //    }
-
-    @DeleteMapping("deletebrand")
+//@CrossOrigin(originPatterns = "http://localhost:4200")
+    @GetMapping("deletebrand")
     public Optional<Brand> deleteBrand(@RequestParam("id") long brandid) {
        Optional<Brand> brandRecord = brandRepo.findById(brandid);
         brandRepo.deleteByBrandId(brandid);
         return brandRecord;
     }
 
-    @DeleteMapping("deletecategory")
+    @GetMapping("deletecategory")
     public Optional<Category> deleteCategory(@RequestParam("id") long categoryid) {
         Optional<Category> categoryRecord = categoryRepo.findById(categoryid);
         categoryRepo.deleteByCategoryId(categoryid);
@@ -85,6 +85,7 @@ public class AdminController {
         return categoryRecord;
     }
 
+    //@CrossOrigin(originPatterns = "http://localhost:4200")
     @PostMapping("addproduct")
     public Product postProduct(@RequestBody AddProductAdmin addProductAdmin){
         Optional<Category> category = categoryRepo.findById(addProductAdmin.getCategory_id());
@@ -122,7 +123,8 @@ public class AdminController {
     }
 
     //dlt product by product Id
-    @DeleteMapping("deleteproduct")
+    //@CrossOrigin(originPatterns = "http://localhost:4200")
+    @GetMapping("deleteproduct")
     public Optional<Product> deleteProduct(@RequestParam("id") long productid) {
         Optional<Product> removedStore = productRepo.findById(productid);
         productRepo.deleteByProductId(productid);
