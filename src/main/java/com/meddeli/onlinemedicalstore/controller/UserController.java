@@ -95,18 +95,22 @@ public class UserController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("register")
-    public String auth(@RequestBody User user)
+    public User auth(@RequestBody User user)
     {
+        user.setRole("USER");
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepo.save(user);
-        return "Success";
+        User userDetailsSave = null;
+        userDetailsSave = userRepo.save(user);
+
+        return userDetailsSave;
     }
 
     @Autowired
     private CartRepository cartRepo;
 
-    @Autowired
-    private CartFoodItemRepository cartFoodItemRepo;
+//    @Autowired
+//    private CartFoodItemRepository cartFoodItemRepo;
 
 
 //    @PostMapping("addcartitem")

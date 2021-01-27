@@ -1,13 +1,11 @@
 package com.meddeli.onlinemedicalstore.controller;
 
 import com.meddeli.onlinemedicalstore.model.*;
-import com.meddeli.onlinemedicalstore.repository.AdminRepository;
-import com.meddeli.onlinemedicalstore.repository.BrandRepository;
-import com.meddeli.onlinemedicalstore.repository.CategoryRepository;
-import com.meddeli.onlinemedicalstore.repository.ProductRepository;
+import com.meddeli.onlinemedicalstore.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
@@ -149,14 +147,36 @@ public class AdminController {
         return "success.";
     }
 
+//    @Autowired
+//    private AdminRepository adminRepo;
+
+//    @PostMapping("registeradmin")
+//    private Admin registerAdmin(@RequestBody Admin admin)
+//    {
+//        user.setRole("ROLE_ADMIN");
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        userRepo.save(user);
+//        Admin adminDetailsSave = null;
+//        adminDetailsSave = adminRepo.save(admin);
+//
+//        return adminDetailsSave;
+//    }
+
     @Autowired
-    private AdminRepository adminRepo;
+    private UserRepository userRepo;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("registeradmin")
-    private Admin registerAdmin(@RequestBody Admin admin)
+    private User registerAdmin(@RequestBody User user)
     {
-        Admin adminDetailsSave = null;
-        adminDetailsSave = adminRepo.save(admin);
+        //user.setRole(user.getRole());
+        user.setRole("ADMIN");
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepo.save(user);
+        User adminDetailsSave = null;
+        adminDetailsSave = userRepo.save(user);
 
         return adminDetailsSave;
     }

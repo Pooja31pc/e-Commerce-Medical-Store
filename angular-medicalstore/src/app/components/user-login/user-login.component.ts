@@ -30,10 +30,12 @@ export class UserLoginComponent implements OnInit {
         },
         error => {
           console.log(error);
+          return alert("Wrong Input !!");
         }
       )
     }else{
       console.log("Fields are empty !!");
+      return alert("Fields are empty !!");
     }
   }
 

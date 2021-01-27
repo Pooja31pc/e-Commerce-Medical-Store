@@ -35,6 +35,8 @@ import { MatFormFieldModule} from "@angular/material/form-field";
 import { MatInputModule} from "@angular/material/input";
 import {AuthGuard} from "./services/auth.guard";
 import {AuthInterceptor} from "./services/auth.interceptor";
+import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 //import { environment } from '../environments/environment';
 
 const routes: Routes = [
@@ -48,7 +50,9 @@ const routes: Routes = [
   {path: 'admincategory', component: AdminCategoryListComponent},
   {path: 'updateproduct/:id', component: AdminUpdateProductComponent},
   {path: 'login', component: UserLoginComponent},
+  {path: 'adminlogin', component: AdminLoginComponent},
   {path: 'register', component: UserRegisterComponent},
+  {path: 'adminregister', component: AdminRegisterComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -84,7 +88,9 @@ const routes: Routes = [
     //AdminDeleteProductComponent,
     AdminUpdateProductComponent,
     AdminBrandCreateComponent,
-    AdminCategoryCreateComponent
+    AdminCategoryCreateComponent,
+    AdminRegisterComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
