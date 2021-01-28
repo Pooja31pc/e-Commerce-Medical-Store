@@ -3,11 +3,11 @@ import {Register} from "../../common/register";
 import {RegisterService} from "../../services/register.service";
 
 @Component({
-  selector: 'app-user-register',
-  templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.css']
+  selector: 'app-admin-register',
+  templateUrl: './admin-register.component.html',
+  styleUrls: ['./admin-register.component.css']
 })
-export class UserRegisterComponent implements OnInit {
+export class AdminRegisterComponent implements OnInit {
 
   register: Register = new Register();
 
@@ -22,13 +22,12 @@ export class UserRegisterComponent implements OnInit {
   }
 
   saveRegistered(){
-    this.registerService.createUserRegister(this.register).subscribe(data => {
+    this.registerService.createAdminRegister(this.register).subscribe(data => {
         console.log(data);
-        window.location.href="/login"
-      return alert("Registered successfully.... Login and enjoy !!!");
+        window.location.href="/adminlogin"
+        return alert("Registered successfully.... Login and enjoy !!!");
       },
       error => console.log(error));
   }
-
 
 }

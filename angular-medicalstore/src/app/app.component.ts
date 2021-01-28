@@ -17,8 +17,9 @@ export class AppComponent {
 
   public loggedIn=false;
   // products: Product
-  constructor(private loginService:LoginService,
-              ) {
+  constructor(private loginService:LoginService)
+  {
+
   }
 
   ngOnInit(): void{
@@ -28,7 +29,8 @@ export class AppComponent {
   logoutUser()
   {
     this.loginService.logout()
-    location.reload()
+   // location.reload()
+    window.location.href="/login"
   }
 
 }

@@ -18,10 +18,13 @@ export class ProductService {
 
  //private baseUrl = "http://localhost:8484/products";
   private baseUrl =    environment.apiUrl+'/products';
+  //private baseUrl =    environment.apiUrl+'/user/product';
   //private categoryUrl = "http://localhost:8484/product-category";
   private categoryUrl = environment.apiUrl+'/product-category';
+  //private categoryUrl = environment.apiUrl+'/user/categoryproducts';
   //private brandUrl = "http://localhost:8484/product-brand";
   private brandUrl = environment.apiUrl+'/product-brand';
+ // private brandUrl = environment.apiUrl+'/user/product-brand';
   //private adminUrl = "http://localhost:8484/admin/product";
   private adminUrl = environment.apiUrl+'/admin/product';
   //private adminCreateProductUrl = "http://localhost:8484/admin/addproduct";
@@ -41,12 +44,9 @@ export class ProductService {
   getAdminList(): Observable<Product[]>{
     return this.httpClient.get<Product[]>(`${this.adminUrl}`);
   }
-
   //
   createAdminProduct(product: Product): Observable<Object>{
-    // let alreadyExistsCategory: boolean = false;
-    // let existingCategory: ProductCategory = undefined;
-    // if()
+
      return this.httpClient.post(`${this.adminCreateProductUrl}`, product);
   }
 
