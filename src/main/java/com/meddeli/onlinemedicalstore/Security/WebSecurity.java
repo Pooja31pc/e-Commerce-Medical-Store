@@ -33,8 +33,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
         http.cors().and().authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/user/register").permitAll()
                 .antMatchers(HttpMethod.POST,"/admin/registeradmin").permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user/**").hasRole("USER")
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/user/**").hasAuthority("USER")
                 .antMatchers("/user/login").permitAll()
                 .antMatchers("/admin/login").permitAll()
                 .antMatchers("/swagger-ui.html").permitAll()
@@ -46,7 +46,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager()))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(),userDetailsService))
 //                this disables session creation on Spring Security
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 //                http.authorizeRequests().antMatchers("*").permitAll().antMatchers(HttpMethod.POST,"*").permitAll();

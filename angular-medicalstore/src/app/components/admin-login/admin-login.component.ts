@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {LoginService} from "../../services/login.service";
 
 @Component({
-  selector: 'app-user-login',
-  templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.css']
+  selector: 'app-admin-login',
+  templateUrl: './admin-login.component.html',
+  styleUrls: ['./admin-login.component.css']
 })
-export class UserLoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   credentials= {
     username:'',
     password:'',
-    role:'USER'
+    role:'ADMIN'
   }
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +27,7 @@ export class UserLoginComponent implements OnInit {
         (response:string)=>{
           console.log(response);
           this.loginService.loginUser(response)
-          window.location.href="/products"
+          window.location.href="/adminproduct"
         },
         error => {
           console.log(error);

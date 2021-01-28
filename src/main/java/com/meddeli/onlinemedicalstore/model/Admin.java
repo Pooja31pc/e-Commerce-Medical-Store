@@ -1,4 +1,5 @@
 package com.meddeli.onlinemedicalstore.model;
+//NO USE OF THIS TABLE DELETE IT USER TABLE S HI KAM HO JAA RA HAI
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +18,7 @@ public class Admin {
     @Column(name="user_name")
     private String username;
 
-    private String emailid;
+    //private String emailid;
 
     private String password;
 
@@ -37,13 +38,13 @@ public class Admin {
         this.username = username;
     }
 
-    public String getEmailid() {
-        return emailid;
-    }
-
-    public void setEmailid(String emailid) {
-        this.emailid = emailid;
-    }
+//    public String getEmailid() {
+//        return emailid;
+//    }
+//
+//    public void setEmailid(String emailid) {
+//        this.emailid = emailid;
+//    }
 
     public String getPassword() {
         return password;
@@ -56,10 +57,10 @@ public class Admin {
     public Admin() {
     }
 
-    public Admin(Long id, String username, String emailid, String password) {
+    public Admin(Long id, String username, String password) {
         this.id = id;
         this.username = username;
-        this.emailid = emailid;
+       // this.emailid = emailid;
         this.password = password;
     }
 
