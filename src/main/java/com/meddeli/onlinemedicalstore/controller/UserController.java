@@ -106,7 +106,7 @@ public class UserController {
     private CartRepository cartRepo;
 
     @Autowired
-    private CartFoodItemRepository cartFoodItemRepo;
+    private CartProductItemRepository cartProductItemRepo;
 
 
 //    @PostMapping("addcartitem")

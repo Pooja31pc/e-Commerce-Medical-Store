@@ -18,9 +18,9 @@ public class Cart {
     private User user;
 
     @OneToMany(mappedBy="cart")
-    private Set<CartFoodItem> cartfoodItem;
+    private Set<CartProductItem> cartfoodItem;
 
-    public Cart(boolean ordered, User userObj) {
+    public Cart(boolean ordered, User user) {
         this.ordered = ordered;
         this.user = user;
     }
@@ -57,16 +57,16 @@ public class Cart {
         this.user = user;
     }
 
-    public Set<CartFoodItem> getCartfoodItem() {
+    public Set<CartProductItem> getCartfoodItem() {
         return cartfoodItem;
     }
 
-    public void setCartfoodItem(Set<CartFoodItem> cartfoodItem) {
+    public void setCartfoodItem(Set<CartProductItem> cartfoodItem) {
         this.cartfoodItem = cartfoodItem;
     }
     public Cart() {
     }
-    public Cart(int cartId, Date orderedtime, boolean ordered, User user, Set<CartFoodItem> cartfoodItem) {
+    public Cart(int cartId, Date orderedtime, boolean ordered, User user, Set<CartProductItem> cartfoodItem) {
         this.cartId = cartId;
         this.orderedtime = orderedtime;
         this.ordered = ordered;

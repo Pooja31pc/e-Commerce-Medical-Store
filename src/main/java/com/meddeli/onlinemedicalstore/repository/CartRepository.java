@@ -11,7 +11,6 @@ import java.util.List;
 public interface CartRepository extends JpaRepository<Cart, Long> {
 
     @Query("select d from Cart d where d.ordered=false AND d.user=:user")
-    List<Cart> getUnorderedCartList(
-            @Param("user") User user);
+    List<Cart> getUnorderedCartList(@Param("user") User user);
 
 }
