@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  url="http://localhost:8484/user/login"
+  userurl=environment.apiUrl+'/login';
+  //url="http://localhost:8484/user/login"
+
+  // adminurl=environment.apiUrl+'/admin/login';
+  // //adminurl="http://localhost:8484/admin/login"
 
   constructor(private http:HttpClient) { }
 
-  //calling the server to generate token
+  //calling the server to generate token for user
   generateToken(credentials:any){
     //token generate
     const headers = new HttpHeaders().set('Content-Type', 'text/plain; charset=utf-8')
-    return this.http.post(`${this.url}`,credentials,{ headers, responseType: 'text'})
+    return this.http.post(`${this.userurl}`,credentials,{ headers, responseType: 'text'})
   }
-
 
   //for login user
   loginUser(token)

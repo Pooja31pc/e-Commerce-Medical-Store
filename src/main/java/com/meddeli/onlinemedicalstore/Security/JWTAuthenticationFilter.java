@@ -28,7 +28,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
 
-        setFilterProcessesUrl("/user/login");
+        //setFilterProcessesUrl("/user/login");
+        setFilterProcessesUrl("/login");
     }
 
     @Override
@@ -37,12 +38,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         try {
             User creds = new ObjectMapper()
                     .readValue(req.getInputStream(), User.class);
-
+            MyUserDetails userDetails = new MyUserDetails(creds);
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            creds.getUsername(),
-                            creds.getPassword(),
-                            new ArrayList<>())
+                            userDetails.getUsername(),
+                            userDetails.getPassword(),
+                            userDetails.getAuthorities())
             );
         } catch (IOException e) {
             throw new RuntimeException(e);

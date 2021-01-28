@@ -95,24 +95,31 @@ public class UserController {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("register")
-    public String auth(@RequestBody User user)
+    public User auth(@RequestBody User user)
     {
+        user.setRole("USER");
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepo.save(user);
-        return "Success";
+        User userDetailsSave = null;
+        userDetailsSave = userRepo.save(user);
+
+        return userDetailsSave;
     }
 
     @Autowired
     private CartRepository cartRepo;
 
+
     @Autowired
     private CartProductItemRepository cartProductItemRepo;
 
+//    @Autowired
+//    private CartFoodItemRepository cartFoodItemRepo;
 
 //    @PostMapping("addcartitem")
 //    public String postCartItem(@RequestBody AddItemUser addItemUser) {
 //        Optional<Product> product = productRepo.findById((long) addItemUser.getProductId());
-//        Optional<User> user = userRepo.findById((long) addItemUser.getUserId());
+//        Optional<User> user = userRepo.findById(addItemUser.getUserId());
 //        if (user.isPresent()) {
 //            User userObj = user.get();
 //            List<Cart> carts = cartRepo.getUnorderedCartList(userObj);
@@ -124,8 +131,8 @@ public class UserController {
 //            }
 //            if (product.isPresent()) {
 //                Product medicine = product.get();
-//                CartFoodItem cartfoodItem = new CartFoodItem(addItemUser.getQuantity(), cart, medicine);
-//                cartFoodItemRepo.save(cartfoodItem);
+//                CartProductItem cartproductItem = new CartProductItem(addItemUser.getQuantity(), cart, medicine);
+//                cartProductItemRepo.save(cartproductItem);
 //                return "Success";
 //            }
 //        }

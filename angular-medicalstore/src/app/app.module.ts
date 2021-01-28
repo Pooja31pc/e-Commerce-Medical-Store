@@ -24,7 +24,7 @@ import { AdminProductCreateComponent } from './components/admin-product-create/a
 import { AdminProductDetailsComponent } from './components/admin-product-details/admin-product-details.component';
 import { AdminBrandListComponent } from './components/admin-brand-list/admin-brand-list.component';
 import { AdminCategoryListComponent } from './components/admin-category-list/admin-category-list.component';
-import { AdminDeleteProductComponent } from './components/admin-delete-product/admin-delete-product.component';
+//import { AdminDeleteProductComponent } from './components/admin-delete-product/admin-delete-product.component';
 import { AdminUpdateProductComponent } from './components/admin-update-product/admin-update-product.component';
 import { AdminBrandCreateComponent } from './components/admin-brand-create/admin-brand-create.component';
 import { AdminCategoryCreateComponent } from './components/admin-category-create/admin-category-create.component';
@@ -35,8 +35,9 @@ import { MatFormFieldModule} from "@angular/material/form-field";
 import { MatInputModule} from "@angular/material/input";
 import {AuthGuard} from "./services/auth.guard";
 import {AuthInterceptor} from "./services/auth.interceptor";
-
-
+import { AdminRegisterComponent } from './components/admin-register/admin-register.component';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+//import { environment } from '../environments/environment';
 
 const routes: Routes = [
   {path: 'ordered-details', component: OrderedDetailsComponent},
@@ -49,7 +50,9 @@ const routes: Routes = [
   {path: 'admincategory', component: AdminCategoryListComponent},
   {path: 'updateproduct/:id', component: AdminUpdateProductComponent},
   {path: 'login', component: UserLoginComponent},
+  {path: 'adminlogin', component: AdminLoginComponent},
   {path: 'register', component: UserRegisterComponent},
+  {path: 'adminregister', component: AdminRegisterComponent},
   {path: 'checkout', component: CheckoutComponent},
   {path: 'cart-details', component: CartDetailsComponent},
   {path: 'products/:id', component: ProductDetailsComponent},
@@ -82,10 +85,12 @@ const routes: Routes = [
     AdminProductDetailsComponent,
     AdminBrandListComponent,
     AdminCategoryListComponent,
-    AdminDeleteProductComponent,
+    //AdminDeleteProductComponent,
     AdminUpdateProductComponent,
     AdminBrandCreateComponent,
-    AdminCategoryCreateComponent
+    AdminCategoryCreateComponent,
+    AdminRegisterComponent,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +101,7 @@ const routes: Routes = [
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes)
     // BrowserAnimationsModule
   ],
   providers: [

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Product} from "./common/product";
 import {LoginService} from "./services/login.service";
+import { environment } from "../environments/environment";
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,16 @@ import {LoginService} from "./services/login.service";
 })
 export class AppComponent {
 
+  //environmentUrl = environment.apiUrl;
+  // globalUrl(){
+  //   this.productService.getProducts()
+  // }
+
   public loggedIn=false;
   // products: Product
-  constructor(private loginService:LoginService) {
+  constructor(private loginService:LoginService)
+  {
+
   }
 
   ngOnInit(): void{
@@ -21,7 +29,8 @@ export class AppComponent {
   logoutUser()
   {
     this.loginService.logout()
-    location.reload()
+   // location.reload()
+    window.location.href="/login"
   }
 
 }
