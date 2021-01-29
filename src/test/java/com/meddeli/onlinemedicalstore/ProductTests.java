@@ -13,7 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.math.BigDecimal;
 
 @DataJpaTest
-public class ProductTests {
+    public class ProductTests {
 
     @Autowired
     private BrandRepository brandRepo;

@@ -7,7 +7,7 @@ import {ProductService} from "./product.service";
 @Injectable({
   providedIn: 'root'
 })
-export class CartService {
+  export class CartService {
 
   cartItems: CartItem[] = [];
   totalPrice: Subject<number> = new Subject<number>();

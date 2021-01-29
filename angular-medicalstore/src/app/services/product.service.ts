@@ -14,7 +14,7 @@ import {environment} from "../../environments/environment";
   providedIn: 'root'
 })
 
-export class ProductService {
+  export class ProductService {
 
  //private baseUrl = "http://localhost:8484/products";
   private baseUrl =    environment.apiUrl+'/products';

@@ -16,12 +16,13 @@ public class OnlinemedicalstoreApplication {
 		SpringApplication.run(OnlinemedicalstoreApplication.class, args);
 	}
 
+	//for auth configuration
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-
+	//for auth configuration
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

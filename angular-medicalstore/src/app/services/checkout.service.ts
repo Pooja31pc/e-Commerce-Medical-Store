@@ -5,7 +5,7 @@ import {Observable, of} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class CheckoutService {
+  export class CheckoutService {
 
   constructor(private httpClient: HttpClient) { }
 
