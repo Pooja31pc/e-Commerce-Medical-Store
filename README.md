@@ -1,11 +1,11 @@
 # e-Commerce-Medical-Store
-Med-Deli is a normal health care product ordering system which implements the MVC (Model-View-Control) Architecture.
-As View, Angular-11 with routing is used. For the backend, Spring Boot is used. For the Database Support, MySql has been used. Java Persistence Api (JPA) is used to write the Business Logic. REST Api's are written to communicate between server ports (Angular-> port:4200, SpringBoot -> port:8282, MySql -> port:3306)
+Med-Deli is a normal health care product ordering system.
+For View, Angular-11 with routing is used. For the backend, Spring Boot is used. For the Database Support, MySql has been used. Java Persistence Api (JPA) is used to write the Business Logic. REST Api's are written to communicate between server ports (Angular-> port:4200, SpringBoot -> port:8282, MySql -> port:3306)
 
 The project consist of a role based Login and Register page when user navigates to localhost:4200. On successfull login or Registration as a user, a page with all the list of available products will open. This page would have category list and brand list to fetch products as per category or as per brand.
 Also, one can navigate to particular product detail page and shows the available quantity of the product. When items are added to cart and click the cart button which lists all the added products in the cart with the added quantity number and total amount of all the added products, having increase, decrease or delete the product option also. After checking all the added product details and navigated to payment page, it asks for personal and card details. On clicking the checkout option, the products get purchased and again lists the product available in the database.
 
-Similarly, when a person logins or registers as an admin, a page with the admin functionalites appers with an option to alter, delete, add the product details. If an admin adds the product details a post request is made and the DB updates itself. The component refreshes itself and the page doesn't need to refresh to see the changes.
+Similarly, when a person logins or registers as an admin, a page with the admin functionalites will appear with options to alter, delete, add the product details. If an admin adds the product details a post request is made and the DB updates itself. The component refreshes itself and the page doesn't need to refresh to see the changes.
 
 ### Features
 1. Register or login:
