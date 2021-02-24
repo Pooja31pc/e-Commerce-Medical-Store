@@ -63,3 +63,69 @@ Update the application.properties file in the src/main/resources folder with the
 3. In CLI write npm start
 4. App is running on port 4200
 5. Run frontend on: http://localhost:4200/
+
+### Project sneak peek
+
+<table>
+  <tr>
+     <td>Registeration page for admin and login></td>
+     <td>Successful login</td>
+  </tr>
+  <tr>
+    <td><img src="images/image1.jpg" width=480 height=300></td>
+    <td><img src="images/image2.jpg" width=480 height=300></td>
+  </tr>
+ </table>
+ 
+ <table>
+  <tr>
+     <td>Front page</td>
+     <td>Product list as per brand filter</td>
+  </tr>
+  <tr>
+    <td><img src="images/image3.jpg" width=480 height=300></td>
+    <td><img src="images/image4.jpg" width=480 height=300></td>
+  </tr>
+ </table>
+ 
+ <table>
+  <tr>
+     <td>Particular product detail</td>
+     <td>Cart details</td>
+  </tr>
+  <tr>
+    <td><img src="images/image5.jpg" width=480 height=300></td>
+    <td><img src="images/image6.jpg" width=480 height=300></td>
+  </tr>
+ </table>
+ 
+ <table>
+  <tr>
+     <td>Payment page</td>
+     <td>Successful checkout</td>
+  </tr>
+  <tr>
+    <td><img src="images/image7.jpg" width=480 height=300></td>
+    <td><img src="images/image8.jpg" width=480 height=300></td>
+  </tr>
+ </table>
+ 
+ <table>
+  <tr>
+     <td>Admin product list</td>
+     <td>Admin category list</td>
+  </tr>
+  <tr>
+    <td><img src="images/image9.jpg" width=480 height=300></td>
+    <td><img src="images/image10.jpg" width=480 height=300></td>
+  </tr>
+ </table>
+ 
+ <table>
+  <tr>
+     <td>Admin brand list</td>
+  </tr>
+  <tr>
+    <td><img src="images/image11.jpg" width=480 height=300></td>
+  </tr>
+ </table>
