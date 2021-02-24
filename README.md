@@ -58,7 +58,7 @@ Update the application.properties file in the src/main/resources folder with the
 2. Spring server would be running on http://localhost:8282
 
 ##### For frontend
-1. cd angulartodomanagementapp
+1. cd angular-medicalstore
 2. In CLI write npm install
 3. In CLI write npm start
 4. App is running on port 4200
